@@ -9,6 +9,8 @@ sides << gets.chomp.to_f
 puts 'Enter 3 side'
 sides << gets.chomp.to_f
 
+sides = sides.sort
+
 hypotenuse = sides[2]
 cathet1 = sides[1]
 cathet2 = sides[0]
