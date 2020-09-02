@@ -33,12 +33,12 @@ class Train
 
   def move_forward
     move(next_station)
-    index_current_station + 1
+    index_current_station += 1
   end
 
   def move_backward
     move(last_station)
-    index_current_station - 1
+    index_current_station -= 1
   end
 
   def next_station
