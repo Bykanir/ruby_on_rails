@@ -1,3 +1,5 @@
+require_relative 'requireable'
+
 class Train
 
   attr_accessor :speed, :carriages, :current_station, :index_current_station
@@ -24,34 +26,34 @@ class Train
 
   def accept_route(route)
     @route = route
-    @current_stations = route.stations[0]
-    current_stations.add_train(self)
+    @current_station = route.stations[0]
+    current_station.add_train(self)
     @index_current_station = 0
   end
 
   def move_forward
     move(next_station)
-    index_current_station += 1
+    index_current_station + 1
   end
 
   def move_backward
     move(last_station)
-    index_current_station -= 1
+    index_current_station - 1
   end
 
   def next_station
-    route.stations[index_current_station + 1]
+    route.stations[index_current_station + 1] if index_current_station < route.stations.size
   end
 
   def last_station
-    route.stations[index_current_station - 1]
+    route.stations[index_current_station - 1] if index_current_station > 0
   end
 
   private
 
   def move(station)
-    current_stations.send_train(self)
-    current_stations = station
-    current_stations.add_train(self)   
+    current_station.send_train(self)
+    current_station = station
+    current_station.add_train(self) 
   end 
 end

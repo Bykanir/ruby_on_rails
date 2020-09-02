@@ -1,3 +1,5 @@
+require_relative 'requireable'
+
 class Station
 
   attr_accessor :trains     

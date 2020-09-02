@@ -1,3 +1,5 @@
+require_relative 'requireable'
+
 class Route
 
   attr_accessor :stations
