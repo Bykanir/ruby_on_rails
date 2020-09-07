@@ -1,6 +1,5 @@
 class Train
 
-  attr_accessor :index_current_station
   attr_reader :route, :number
 
   def initialize(number)
@@ -48,7 +47,7 @@ class Train
 
   private
 
-  attr_accessor :speed, :carriages, :current_station
+  attr_accessor :speed, :carriages, :current_station, :index_current_station
 
   # вспомогательный метод для выполнения перемещения вперед и назад. 
   def move(station) 

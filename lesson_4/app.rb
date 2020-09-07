@@ -11,6 +11,56 @@ class App
     @carriages = []
   end
 
+  def start
+    loop do
+      puts 'Hello!'
+      puts 'Enter command'
+      puts '1 - Create Station'
+      puts '2 - Create train'
+      puts '3 - Create route'
+      puts '4 - Add station in route'
+      puts '5 - Delete station in route'
+      puts '6 - Destination train route'
+      puts '7 - Create carriage'
+      puts '8 - Hook or unhook carriage'
+      puts '9 - Train movement in stations'
+      puts '10 - View list stations and trains at the station'
+      puts '0 - Exit from the program'
+
+    command = gets.chomp
+
+    case command
+      when '1'
+        create_station
+      when '2'
+        create_train
+      when '3'
+        create_route
+      when '4'
+        add_station
+      when '5'
+        delete_station
+      when '6'
+        assign_route
+      when '7'
+        create_carriage
+      when '8'
+        shunting_works
+      when '9'
+        move_train
+      when '10'
+        stations_and_trains
+      when '0'
+        puts 'Good Bay!'
+        break
+      end
+    end
+  end
+
+  private
+
+  #Это все вспомогательные методы, чтобы не "раздувать" основные методы
+
   def create_station
     puts 'Enter station name'
     stations << Station.new(gets.chomp)
@@ -60,7 +110,7 @@ class App
     train.accept_route(route_search(gets.chomp.to_i))
   end
 
-  def create_carriage
+  def create_carriage 
     puts 'Which type carriage'
     puts '1 - Passenger'
     puts '2 - Cargo'
@@ -87,10 +137,6 @@ class App
     puts '2 - Station trains list'
     list_stations_and_trains(gets.chomp.to_i)
   end
-
-  private
-
-  #Это все вспомогательные методы, чтобы не "раздувать" основные методы
 
   def train_types
     [TrainPassenger, TrainCargo]
@@ -132,8 +178,8 @@ class App
   end
 
   def types_carriage(number, type)
-    return carriages << CarriageCargo.new(number) if type == 1
-    return carriages << CarriagePassenger.new(number) if type == 2
+    return carriages << Carriage.new(number, :passenger) if type == 1
+    return carriages << Carriage.new(number, :cargo) if type == 2
   end
 
   def move(train)

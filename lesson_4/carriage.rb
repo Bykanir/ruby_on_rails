@@ -1,8 +1,9 @@
 class Carriage
 
-	attr_reader :number
+	attr_reader :number, :type
 
-	def initialize(number)
+	def initialize(number, type)
 		@number = number
+		@type = type
 	end
 end
