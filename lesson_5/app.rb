@@ -2,9 +2,9 @@ require_relative 'requireable'
 
 class App
 
-	attr_reader :stations, :trains, :routes, :carriages
+  attr_reader :stations, :trains, :routes, :carriages
 
-	def initialize
+  def initialize
     @stations = []
     @trains = []
     @routes = []
@@ -27,31 +27,31 @@ class App
       puts '10 - View list stations and trains at the station'
       puts '0 - Exit from the program'
 
-    command = gets.chomp
+      command = gets.chomp
 
-    case command
-      when '1'
-        create_station
-      when '2'
-        create_train
-      when '3'
-        create_route
-      when '4'
-        add_station
-      when '5'
-        delete_station
-      when '6'
-        assign_route
-      when '7'
-        create_carriage
-      when '8'
-        shunting_works
-      when '9'
-        move_train
-      when '10'
-        stations_and_trains
-      when '0'
-        puts 'Good Bay!'
+      case command
+        when '1'
+          create_station
+        when '2'
+          create_train
+        when '3'
+          create_route
+        when '4'
+          add_station
+        when '5'
+          delete_station
+        when '6'
+          assign_route
+        when '7'
+          create_carriage
+        when '8'
+          shunting_works
+        when '9'
+          move_train
+        when '10'
+          stations_and_trains
+        when '0'
+          puts 'Good Bay!'
         break
       end
     end
