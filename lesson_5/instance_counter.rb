@@ -5,9 +5,14 @@ module InstanceCounter
     base.include InstanceMethods
   end
 
+
   module ClassMethods
 
     attr_accessor :instances
+
+    def instances
+      @instances ||= 0
+    end
   end
   
   module InstanceMethods
@@ -15,7 +20,6 @@ module InstanceCounter
     private
 
     def register_instances
-      self.class.instances ||= 0
       self.class.instances += 1
     end
   end
