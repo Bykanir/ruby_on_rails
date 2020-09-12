@@ -5,7 +5,6 @@ module InstanceCounter
     base.include InstanceMethods
   end
 
-
   module ClassMethods
 
     attr_writer :instances
