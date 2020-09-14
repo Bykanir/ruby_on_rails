@@ -2,6 +2,7 @@
 
 require_relative 'requireable'
 
+# rubocop:disable Metrics/ClassLength
 class App
   attr_reader :stations, :trains, :routes, :carriages
 
@@ -12,6 +13,7 @@ class App
     @carriages = []
   end
 
+  # rubocop:disable Metrics/MethodLength, Metrics/BlockLength, Metrics/AbcSize, Metrics/CyclomaticComplexity
   def start
     loop do
       puts 'Hello!'
@@ -66,6 +68,7 @@ class App
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength, Metrics/BlockLength, Metrics/AbcSize, Metrics/CyclomaticComplexity
 
   private
 
@@ -74,6 +77,7 @@ class App
     stations << Station.new(gets.chomp)
   end
 
+  # rubocop:disable Metrics/AbcSize
   def create_train
     puts 'Which type train'
     puts '1 - Passenger'
@@ -83,9 +87,10 @@ class App
     puts 'Which number train'
     trains << train_types[type_train - 1].new(gets.chomp)
   rescue StandardError
-    puts '< You have entered the wrong train number format. Repeat creation! >'
+    puts '<You have entered the wrong train number format. Repeat creation!>'
     retry
   end
+  # rubocop:enable Metrics/AbcSize
 
   def create_route
     list_stations(message_first_station: true)
@@ -311,3 +316,4 @@ class App
     end
   end
 end
+# rubocop:enable Metrics/ClassLength

@@ -4,23 +4,8 @@ AllCops:
 Style/Documentation:
   Enabled: false
 
-Metrics/ClassLength:
-  Enabled: false
-
-Metrics/AbcSize:
-  Max: 40
-
-Metrics/CyclomaticComplexity:
-  Max: 15
-
-Metrics/MethodLength:
-  Max: 50
-
 Style/ClassVars:
   Enabled: false
-
-Metrics/BlockLength:
-  Max: 50
 
 Lint/UselessAssignment:
   Enabled: false
