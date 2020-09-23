@@ -26,7 +26,7 @@ class Train
     @speed = 0
     @@trains << self
     register_instances
-    valid?(number, :format, /^.{3}-*.{2}$/)
+    valid?(number, 0, /^.{3}-*.{2}$/)
   end
 
   def stop
