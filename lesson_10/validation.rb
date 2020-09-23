@@ -3,13 +3,31 @@ module Validation
 
     attr_reader :validators
 
-    def validate(attr_name, type_validation, add_parametr = nil)
-      @validators = [attr_name, type_validation, add_parametr]
+    def validate(attr_name, type_validation, add_parametr = true)
+      @validators = []
+      @validators << [attr_name, type_validation, add_parametr]
+    end
+  end
+  
+  module InstanceMethods
+    def valid?
+      validate!
+    rescue 
+      false
+    end
+
+    def validate!
+      self.class.validators.each do |validator|
+        attr_name = instance_variable_get("@#{validator[0]}")
+        type_validation = validator[1]
+        add_parametr = validator[2]
+        send(type_validation, attr_name, add_parametr)
+      end
     end
 
     private
 
-    def presence(attr, nil)
+    def presence(attr, options = true)
       raise 'Name is wrong' if attr.empty? || attr.nil?
 
       true
@@ -26,33 +44,5 @@ module Validation
 
       true
     end
-  end
-  
-  module InstanceMethods
-    def valid?(attr_name, type_validation, add_parametr = nil)
-      self.class.validate(attr_name, type_validation, add_parametr)
-      validate!
-      true
-    rescue 
-     puts 'Что-то пошло не так'
-      false
-    end
-    
-    private
-
-    def validate!
-      type_validation = self.class.validators[1].to_sym
-      self.class.send(type_validation, self.class.validators[0], self.class.validators[2])
-    end
-  end
-end
-
-class Test
-  extend Validation::ClassMethods
-  include Validation::InstanceMethods
-
-  def initialize(name)
-    @name = name
-    valid?(name, 'presence')
   end
 end

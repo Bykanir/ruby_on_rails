@@ -8,10 +8,12 @@ class Carriage
   extend Validation::ClassMethods
   include Validation::InstanceMethods
 
+  validate :number, :format, /^.{3}$/
+
   attr_reader :number
 
   def initialize(number)
     @number = number
-    valid?(number, :format, /^.{3}$/)
+    validate!
   end
 end

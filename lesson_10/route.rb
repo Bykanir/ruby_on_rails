@@ -8,6 +8,8 @@ class Route
   extend Validation::ClassMethods
   include Validation::InstanceMethods
 
+  validate :first_station, :presence
+
   attr_reader :name
   attr_accessor :stations
 
@@ -17,7 +19,7 @@ class Route
     @stations = [first_station, last_station]
     @name = "#{first_station.name} - #{last_station.name}"
     register_instances
-    valid?(first_station, :presence)
+    validate!
   end
 
   def add_station(station)

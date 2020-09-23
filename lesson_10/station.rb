@@ -8,6 +8,8 @@ class Station
   extend Validation::ClassMethods
   include Validation::InstanceMethods
 
+  validate :name, :type, String
+
   attr_reader :name
   attr_accessor :trains
 
@@ -24,7 +26,7 @@ class Station
     @trains = []
     @@stations << self
     register_instances
-    valid?(name, :type, String)
+    validate!
   end
 
   def add_train(train)

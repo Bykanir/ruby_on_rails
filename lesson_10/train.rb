@@ -10,6 +10,8 @@ class Train
   extend Validation::ClassMethods
   include Validation::InstanceMethods
 
+  validate :number, :format, /^.{3}-*.{2}$/
+
   attr_reader :route, :number, :carriages, :index_current_station
 
   @@trains = []
@@ -26,7 +28,7 @@ class Train
     @speed = 0
     @@trains << self
     register_instances
-    valid?(number, 0, /^.{3}-*.{2}$/)
+    validate!
   end
 
   def stop
